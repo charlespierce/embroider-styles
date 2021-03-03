@@ -1,57 +1,37 @@
 # embroider-styles
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Reproduction of an issue with Embroider builds, `ember-cli-eyeglass`, and lazy-loaded engines.
 
-## Prerequisites
+## Steps to Reproduce
 
-You will need the following things properly installed on your computer.
+Run `ember build` and see the error about "`my-addon was not found in any of the following locations:"
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+## Expected Behavior
 
-## Installation
+The builds completes successfully. Note that this _does_ work under classic ember build, which you can see by running:
 
-* `git clone <repository-url>` this repository
-* `cd embroider-styles`
-* `npm install`
+```
+CLASSIC=1 ember build
+```
 
-## Running / Development
+## Actual Behavior
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+The build fails with an `EyeglassCompiler` error:
 
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+```
+$TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/addon.scss:1:10: `my-addon` was not found in any of the following locations:
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/_my-addon.scss
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon/_index.scss
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon.scss
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon/index.scss
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon.sass
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon.css
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/_my-addon.sass
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/_my-addon.css
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon/index.sass
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon/index.css
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon/_index.sass
+  $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/my-addon/_index.css
+    at $TMPDIR/broccoli-718663h3zwkENJ94B/out-06-funnel/addon.scss:1:9
+        at EyeglassCompiler
+```
