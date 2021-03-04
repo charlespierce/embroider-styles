@@ -1,6 +1,16 @@
 {
   "name": "my-addon",
   "keywords": [
-    "ember-addon"
-  ]
+    "ember-addon",
+    "eyeglass-module"
+  ],
+  "dependencies": {
+    "ember-cli-babel": "*",
+    "ember-cli-eyeglass": "*"
+  },
+  "eyeglass": {
+    "sassDir": "addon/styles",
+    "name": "my-addon",
+    "needs": "^2.0.0"
+  }
 }
