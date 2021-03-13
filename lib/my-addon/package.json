@@ -10,7 +10,6 @@
   },
   "eyeglass": {
     "sassDir": "addon/styles",
-    "name": "my-addon",
     "needs": "^2.0.0"
   }
 }
